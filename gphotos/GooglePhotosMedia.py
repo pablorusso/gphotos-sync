@@ -44,14 +44,14 @@ class GooglePhotosMedia(BaseMedia):
     @property
     def description(self) -> str:
         try:
-            return get_check().valid_file_name(self.__media_json["description"])
+            return get_check().valid_file_name(self.__media_json["description"].encode('utf-8'))
         except KeyError:
             return ""
 
     @property
     def orig_name(self) -> Path:
         try:
-            name = self.__media_json["filename"]
+            name = self.__media_json["filename"].encode('utf-8')
             matches = DuplicateSuffix.match(name)
             if matches:
                 # append the prefix and the suffix, ditching the ' (n)'

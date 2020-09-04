@@ -27,7 +27,7 @@ class GoogleAlbumMedia(BaseMedia):
     @property
     def orig_name(self) -> str:
         try:
-            return self.__media_json["title"]
+            return self.__media_json["title"].encode('utf-8')
         except KeyError:
             return "none"
 
